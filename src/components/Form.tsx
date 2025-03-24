@@ -11,16 +11,21 @@ const initialState: Activity = {
 export default function Form() {
   const [activity, setActivity] = useState<Activity>(initialState);
 
-
-
-  const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
-    const isNumberField = ['category', 'calories'].includes(e.target.id)
+  const handleChange = (
+    e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>
+  ) => {
+    const isNumberField = ["category", "calories"].includes(e.target.id);
 
     setActivity({
       ...activity,
-      [e.target.id]: isNumberField ? +e.target.value : e.target.value
-    })
-  }
+      [e.target.id]: isNumberField ? +e.target.value : e.target.value,
+    });
+  };
+
+  const isValidActivity = () => {
+    const { name, calories } = activity;
+    return name.trim() !== "" && calories > 0;
+  };
 
   return (
     <form
@@ -72,6 +77,7 @@ export default function Form() {
         type="submit"
         className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-10"
         value={activity.category === 1 ? "Guardar Comida" : "Guardar Ejercicio"}
+        disabled={!isValidActivity()}
       />
     </form>
   );
