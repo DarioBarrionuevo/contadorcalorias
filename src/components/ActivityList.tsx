@@ -51,6 +51,30 @@ export default function ActivityList({
                 <span>Calorias</span>
               </p>
             </div>
+
+            <div className="flex gap-5 items-center">
+              <button
+                onClick={() =>
+                  dispatch({
+                    type: "set-activeId",
+                    payload: { id: activity.id },
+                  })
+                }
+              >
+                <PencilSquareIcon className="h-8 w-8 text-gray-800 cursor-pointer" />
+              </button>
+
+              <button
+                onClick={() =>
+                  dispatch({
+                    type: "delete-activity",
+                    payload: { id: activity.id },
+                  })
+                }
+              >
+                <XCircleIcon className="h-8 w-8 text-red-500 cursor-pointer" />
+              </button>
+            </div>
           </div>
         ))
       )}
