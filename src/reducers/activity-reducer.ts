@@ -44,11 +44,19 @@ export const activityReducer = (
       activeId: action.payload.id,
     };
   }
-  if(action.type === 'delete-activity') {
+  if (action.type === "delete-activity") {
     return {
-        ...state,
-        activities: state.activities.filter( activity => activity.id !== action.payload.id )
-    }
-}
+      ...state,
+      activities: state.activities.filter(
+        (activity) => activity.id !== action.payload.id
+      ),
+    };
+  }
+  if (action.type === "restart-app") {
+    return {
+      activities: [],
+      activeId: "",
+    };
+  }
   return state;
 };
